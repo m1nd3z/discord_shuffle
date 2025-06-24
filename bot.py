@@ -13,15 +13,15 @@ bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
 @bot.tree.command(name="teamshuffle", description="Suskirsto žaidėjus į komandas")
 @app_commands.describe(
+    voice_channel="Balso kanalas iš kurio paimti žaidėjus",
     komandu_skaicius="Kiek komandų sukurti (palik tuščią, jei nori nurodyti žaidėjų skaičių komandoje)",
-    zaideju_vienoje_komandoje="Kiek žaidėjų komandoje (palik tuščią, jei nori nurodyti komandų skaičių)",
-    voice_channel="Balso kanalas iš kurio paimti žaidėjus"
+    zaideju_vienoje_komandoje="Kiek žaidėjų komandoje (palik tuščią, jei nori nurodyti komandų skaičių)"
 )
 async def teamshuffle(
     interaction: discord.Interaction,
+    voice_channel: discord.VoiceChannel,
     komandu_skaicius: int = None,
-    zaideju_vienoje_komandoje: int = None,
-    voice_channel: discord.VoiceChannel
+    zaideju_vienoje_komandoje: int = None
 ):
     # Validacija - turi būti nurodytas tik vienas parametras
     if komandu_skaicius is not None and zaideju_vienoje_komandoje is not None:
