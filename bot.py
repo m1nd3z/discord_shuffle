@@ -107,8 +107,16 @@ async def teamshuffle(
 
 @bot.event
 async def on_ready():
-    await bot.tree.sync()
     print(f"Botas prisijungė kaip {bot.user}")
+    
+    # Išvalome visas komandas ir sinchronizuojame naujas
+    try:
+        print("Sinchronizuoju komandas...")
+        await bot.tree.sync()
+        print("Komandos sėkmingai sinchronizuotos!")
+    except Exception as e:
+        print(f"Klaida sinchronizuojant komandas: {e}")
+    
     await bot.change_presence(activity=discord.Activity(
         type=discord.ActivityType.watching, 
         name="/teamshuffle")
